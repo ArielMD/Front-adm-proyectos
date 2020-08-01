@@ -72,6 +72,20 @@ const LoginStyled = styled.div`
       padding-right: 10px;
     }
   }
+
+  @media screen and (max-width: 576px) {
+    .logo {
+      width: 100px;
+      height: 100px;
+    }
+    .container {
+      width: 400px;
+    }
+    .wrapper {
+      transform: translateY(-50px);
+      width: 80%;
+    }
+  }
 `;
 
 export default LoginStyled;
