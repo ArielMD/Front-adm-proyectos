@@ -3,9 +3,15 @@ html{
 }
 
 :root{
-  --black: black;
+  --black: #080808;
+  --grey: #4f4f4f;
+  --darkGrey: #3a3a3a9c;
+  --ligthGrey:#8e8e8e;
+  --red: #ff0000e0;
+  --white: #ffffff;
 }
 
 body{
- color: var(--white);
+ margin: 0px;
+ padding: 0px;
 }
