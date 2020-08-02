@@ -6,13 +6,13 @@ const Task = ({ task }) => {
       <p>{task.tarea}</p>
       <div className="options">
         {task.state ? (
-          <button class="btn-state btn-complete">Completo</button>
+          <button className="btn-state btn-complete">Completo</button>
         ) : (
-          <button class="btn-state btn-incomplete">Incompleto</button>
+          <button className="btn-state btn-incomplete">Incompleto</button>
         )}
 
-        <button class="button btn-edit">Editar</button>
-        <button class="button btn-delete">Eliminar</button>
+        <button className="button btn-edit">Editar</button>
+        <button className="button btn-delete">Eliminar</button>
       </div>
     </TaskStyled>
   );

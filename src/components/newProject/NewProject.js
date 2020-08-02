@@ -16,7 +16,7 @@ const NewProject = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-group">
           <label className="input">
-            <img src={iconProject}></img>
+            <img src={iconProject} alt=""></img>
             <input
               name="newProject"
               placeholder="Nombre del Proyecto"

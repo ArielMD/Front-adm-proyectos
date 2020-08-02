@@ -17,12 +17,12 @@ const Login = () => {
     <LoginStyled>
       <div className="container">
         <div className="wrapper">
-          <img className="logo" src={logoUser}></img>
+          <img className="logo" src={logoUser} alt=""></img>
           <h1>Iniciar Sessión</h1>
           <form className="form-user" onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group">
               <label className="input">
-                <img src={iconUser}></img>
+                <img src={iconUser} alt=""></img>
                 <input
                   type="text"
                   placeholder="Nombre de usuario"
@@ -40,7 +40,7 @@ const Login = () => {
             </div>
             <div className="input-group">
               <label className="input">
-                <img src={iconPadlock}></img>
+                <img src={iconPadlock} alt=""></img>
                 <input
                   type="password"
                   placeholder="password"
@@ -52,7 +52,7 @@ const Login = () => {
               </label>
               {errors.password && <small>{errors.password.message}</small>}
             </div>
-            <button className>Entrar</button>
+            <button>Entrar</button>
           </form>
         </div>
       </div>

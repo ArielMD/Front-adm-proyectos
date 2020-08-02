@@ -7,7 +7,7 @@ const Navbar = () => {
         Hola<strong> Ariel</strong>
       </p>
       <nav>
-        <a href="#">Cerrar Session</a>
+        <a href="#?">Cerrar Session</a>
       </nav>
     </NavbarStyled>
   );
