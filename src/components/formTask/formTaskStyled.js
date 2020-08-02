@@ -7,6 +7,9 @@ const FormTaskStyled = styled.div`
   align-items: center;
   .form-task {
     width: 50%;
+    small {
+      color: var(--red);
+    }
   }
   .input-group {
     display: flex;

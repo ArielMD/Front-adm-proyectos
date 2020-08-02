@@ -11,6 +11,11 @@ html{
   --white: #ffffff;
   --darkBlue: #2a3240; 
   --navbar:#f8f8f8; 
+  --bg: #ebeff3;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --success: #155724;
+  
 }
 
 body{
