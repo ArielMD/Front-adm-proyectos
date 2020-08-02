@@ -9,7 +9,8 @@ html{
   --ligthGrey:#8e8e8e;
   --red: #ff0000e0;
   --white: #ffffff;
-  --darkBlue: #2a3240;
+  --darkBlue: #2a3240; 
+  --navbar:#f8f8f8; 
 }
 
 body{

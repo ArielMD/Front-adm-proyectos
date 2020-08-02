@@ -1,11 +1,20 @@
 import React from "react";
 import HomeStyled from "./homeStyled";
 import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import FormTaks from "../../components/formTask/FormTask";
+import ListTask from "../../components/listTask/ListTask";
 const Home = () => {
   return (
     <HomeStyled>
       <Sidebar />
-      <h1 className="sidebar-title">Home</h1>
+      <div className="container">
+        <Navbar />
+        <main>
+          <FormTaks />
+          <ListTask></ListTask>
+        </main>
+      </div>
     </HomeStyled>
   );
 };
