@@ -1,31 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import ListProjectsStyled from "./listProjectStyled";
 import Project from "../project/Project";
+import projectContext from "../../context/projects/projectContext";
 
 const ListProjects = () => {
-  const test = [
-    {
-      nombre: "tarea 1",
-    },
-    {
-      nombre: "tarea 2",
-    },
-    {
-      nombre: "tarea 3",
-    },
-    {
-      nombre: "tarea 1",
-    },
-    {
-      nombre: "tarea 2",
-    },
-  ];
+  const { projects } = useContext(projectContext);
   return (
     <ListProjectsStyled>
       <h1>Mis proyectos</h1>
       <ul>
-        {test.map((project) => (
-          <Project project={project} />
+        {projects.map((project) => (
+          <Project key={project.id} project={project} />
         ))}
       </ul>
     </ListProjectsStyled>
