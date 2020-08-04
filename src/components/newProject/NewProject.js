@@ -6,10 +6,10 @@ import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
   const { errors, handleSubmit, register } = useForm();
-  const { form, showForm } = useContext(projectContext);
+  const { form, showForm, addProject } = useContext(projectContext);
 
   const onSubmit = (values) => {
-    console.log(values);
+    addProject(values);
   };
 
   const onClick = () => {
@@ -28,7 +28,7 @@ const NewProject = () => {
             <label className="input">
               <img src={iconProject} alt=""></img>
               <input
-                name="newProject"
+                name="name"
                 placeholder="Nombre del Proyecto"
                 ref={register({ required: "Nombre del proyecto obligatorio" })}
               ></input>

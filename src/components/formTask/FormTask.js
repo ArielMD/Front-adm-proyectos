@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import FormTaskStyled from "./formTaskStyled";
 import { useForm } from "react-hook-form";
+import projectContext from "../../context/projects/projectContext";
+
 const FormTask = () => {
   const { errors, handleSubmit, register } = useForm();
+  const { project } = useContext(projectContext);
 
   const onSubmit = (values) => {
     console.log(values);
   };
+
+  if (!project) return null;
 
   return (
     <FormTaskStyled>

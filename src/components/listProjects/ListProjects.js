@@ -1,10 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ListProjectsStyled from "./listProjectStyled";
 import Project from "../project/Project";
 import projectContext from "../../context/projects/projectContext";
 
 const ListProjects = () => {
-  const { projects } = useContext(projectContext);
+  const { projects, getProjects } = useContext(projectContext);
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
   return (
     <ListProjectsStyled>
       <h1>Mis proyectos</h1>
