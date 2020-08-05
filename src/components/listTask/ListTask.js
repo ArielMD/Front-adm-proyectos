@@ -2,15 +2,11 @@ import React, { useContext } from "react";
 import ListTaskStyled from "./listTaskStyled";
 import Task from "../task/Task";
 import projectContext from "../../context/projects/projectContext";
-
-const tareas = [
-  { tarea: "tarea 1", state: false },
-  { tarea: "tarea 2", state: true },
-  { tarea: "tarea 3", state: true },
-];
+import taskContext from "../../context/task/taskContext";
 
 const ListTask = () => {
   const { project, deleteProject } = useContext(projectContext);
+  const { task } = useContext(taskContext);
 
   if (!project) {
     return (
@@ -27,10 +23,10 @@ const ListTask = () => {
       <h1>Tareas de {currentProyect.name} </h1>
 
       <ul>
-        {tareas.length === 0 ? (
+        {task.length === 0 ? (
           <li>No hay tareas</li>
         ) : (
-          tareas.map((task) => <Task task={task} />)
+          task.map((task) => <Task task={task} />)
         )}
       </ul>
       <button
