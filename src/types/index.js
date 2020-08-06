@@ -7,3 +7,7 @@ export const DELETE_PROJECT = "DELETE_PROJECT";
 export const PROJECT_TASKS = "PROJECT_TASKS";
 export const ADD_TASK = "ADD_TASK";
 export const DELETE_TASK = "DELETE_TASK";
+export const CURRENT_TASK = "CURRENT_TASK";
+export const UPDATE_STATE = "UPDATE_STATE";
+export const UPDDATE_TASK = "UPDATE_TASK";
+export const RESET_CURRENTTASK = "RESET_CURRENTTASK";

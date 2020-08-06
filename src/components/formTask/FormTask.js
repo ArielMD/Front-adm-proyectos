@@ -1,22 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import FormTaskStyled from "./formTaskStyled";
 import { useForm } from "react-hook-form";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/task/taskContext";
 
 const FormTask = () => {
-  const { errors, handleSubmit, register } = useForm();
+  const { errors, handleSubmit, register, setValue } = useForm();
   const { project } = useContext(projectContext);
-  const { addTask, getTask } = useContext(taskContext);
+  const {
+    addTask,
+    getTask,
+    currentTask,
+    updateTask,
+    resetCurrentTask,
+  } = useContext(taskContext);
+
+  useEffect(() => {
+    if (currentTask) {
+      setValue("tarea", currentTask.tarea);
+    }
+  }, [currentTask]);
 
   if (!project) return null;
 
   const [currentProject] = project;
 
   const onSubmit = (task) => {
-    task.projectId = currentProject.id;
-    task.state = false;
-    addTask(task);
+    if (!currentTask) {
+      task.projectId = currentProject.id;
+      task.state = false;
+      addTask(task);
+    } else {
+      task = { ...currentTask, tarea: task.tarea };
+      updateTask(task);
+      resetCurrentTask();
+    }
     getTask(currentProject.id);
   };
 
@@ -27,11 +45,14 @@ const FormTask = () => {
           <input
             name="tarea"
             type="text"
-            placeholder="Nombre de la tarea"
+            placeholder="nombre de la tarea"
             ref={register({ required: "Debes ingresar una tarea" })}
           ></input>
           {errors.tarea && <small>{errors.tarea.message}</small>}
-          <button type="submit"> Agregar tarea </button>
+          <button type="submit">
+            {" "}
+            {!currentTask ? "Agregar tarea" : "Editar tarea"}{" "}
+          </button>
         </div>
       </form>
     </FormTaskStyled>

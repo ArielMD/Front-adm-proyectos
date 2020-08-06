@@ -26,7 +26,7 @@ const ListTask = () => {
         {task.length === 0 ? (
           <li>No hay tareas</li>
         ) : (
-          task.map((task) => <Task task={task} />)
+          task.map((task) => <Task key={task.id} task={task} />)
         )}
       </ul>
       <button

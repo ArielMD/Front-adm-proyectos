@@ -1,7 +1,15 @@
 import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import { PROJECT_TASKS, ADD_TASK, DELETE_TASK } from "../../types";
+import {
+  PROJECT_TASKS,
+  ADD_TASK,
+  DELETE_TASK,
+  CURRENT_TASK,
+  UPDATE_STATE,
+  UPDDATE_TASK,
+  RESET_CURRENTTASK,
+} from "../../types";
 
 const TareaState = (props) => {
   const initialState = {
@@ -20,6 +28,7 @@ const TareaState = (props) => {
       { id: 12, tarea: "tarea 3", state: true, projectId: 3 },
     ],
     projectTask: null,
+    currentTask: null,
   };
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -45,13 +54,45 @@ const TareaState = (props) => {
     });
   };
 
+  const selectTask = (task) => {
+    dispatch({
+      type: CURRENT_TASK,
+      payload: task,
+    });
+  };
+
+  const updateTask = (task) => {
+    dispatch({
+      type: UPDDATE_TASK,
+      payload: task,
+    });
+  };
+
+  const updateState = (task) => {
+    dispatch({
+      type: UPDATE_STATE,
+      payload: task,
+    });
+  };
+
+  const resetCurrentTask = () => {
+    dispatch({
+      type: RESET_CURRENTTASK,
+    });
+  };
+
   return (
     <TaskContext.Provider
       value={{
         task: state.projectTask,
+        currentTask: state.currentTask,
         getTask,
         addTask,
         deleteTask,
+        selectTask,
+        updateTask,
+        updateState,
+        resetCurrentTask,
       }}
     >
       {props.children}
