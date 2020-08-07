@@ -8,8 +8,9 @@ const NewProject = () => {
   const { errors, handleSubmit, register } = useForm();
   const { form, showForm, addProject } = useContext(projectContext);
 
-  const onSubmit = (values) => {
+  const onSubmit = (values, e) => {
     addProject(values);
+    e.target.reset();
   };
 
   const onClick = () => {
@@ -30,10 +31,14 @@ const NewProject = () => {
               <input
                 name="name"
                 placeholder="Nombre del Proyecto"
-                ref={register({ required: "Nombre del proyecto obligatorio" })}
+                ref={register({
+                  required: "Nombre del proyecto obligatorio",
+                  validate: (name) =>
+                    name.trim() !== "" || "El campo no pueden estar vacios",
+                })}
               ></input>
             </label>
-            {errors.newProject && <small>{errors.newProject.message}</small>}
+            {errors.name && <small>{errors.name.message}</small>}
           </div>
           <button type="submit" className="add button">
             Agregar Proyecto

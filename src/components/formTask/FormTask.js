@@ -19,13 +19,13 @@ const FormTask = () => {
     if (currentTask) {
       setValue("tarea", currentTask.tarea);
     }
-  }, [currentTask]);
+  }, [currentTask, setValue]);
 
   if (!project) return null;
 
   const [currentProject] = project;
 
-  const onSubmit = (task) => {
+  const onSubmit = (task, e) => {
     if (!currentTask) {
       task.projectId = currentProject.id;
       task.state = false;
@@ -35,6 +35,7 @@ const FormTask = () => {
       updateTask(task);
       resetCurrentTask();
     }
+    e.target.reset();
     getTask(currentProject.id);
   };
 
@@ -46,7 +47,11 @@ const FormTask = () => {
             name="tarea"
             type="text"
             placeholder="nombre de la tarea"
-            ref={register({ required: "Debes ingresar una tarea" })}
+            ref={register({
+              required: "Debes ingresar una tarea",
+              validate: (tarea) =>
+                tarea.trim() !== "" || "El campo no puede estar vacio",
+            })}
           ></input>
           {errors.tarea && <small>{errors.tarea.message}</small>}
           <button type="submit">
