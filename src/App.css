@@ -1,5 +1,5 @@
 html{
-  font-size: 20px;
+  font-size: 16px;
 }
 
 :root{
@@ -9,9 +9,17 @@ html{
   --ligthGrey:#8e8e8e;
   --red: #ff0000e0;
   --white: #ffffff;
+  --darkBlue: #2a3240; 
+  --navbar:#f8f8f8; 
+  --bg: #ebeff3;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --success: #155724;
+  
 }
 
 body{
  margin: 0px;
  padding: 0px;
+ font-family: 'Roboto', sans-serif;
 }
