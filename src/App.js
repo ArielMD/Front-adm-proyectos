@@ -6,18 +6,21 @@ import Login from "./views/login/Login";
 import Register from "./views/register/Register";
 import ProjectState from "./context/projects/projectState";
 import TaskState from "./context/task/taskState";
+import AuthState from "./context/auth/authState";
 
 function App() {
   return (
     <ProjectState>
       <TaskState>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={Login}></Route>
-            <Route exact path="/nuevaCuenta" component={Register}></Route>
-            <Route exact path="/proyectos" component={Home}></Route>
-          </Switch>
-        </BrowserRouter>
+        <AuthState>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/" component={Login}></Route>
+              <Route exact path="/nuevaCuenta" component={Register}></Route>
+              <Route exact path="/proyectos" component={Home}></Route>
+            </Switch>
+          </BrowserRouter>
+        </AuthState>
       </TaskState>
     </ProjectState>
   );

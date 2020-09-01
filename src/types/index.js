@@ -11,3 +11,10 @@ export const CURRENT_TASK = "CURRENT_TASK";
 export const UPDATE_STATE = "UPDATE_STATE";
 export const UPDDATE_TASK = "UPDATE_TASK";
 export const RESET_CURRENTTASK = "RESET_CURRENTTASK";
+
+export const REGISTRY_SUCCESSFUL = "REGISTRY_SUCCESSFUL";
+export const REGISTRY_ERROR = "REGISTRY_ERROR";
+export const GET_USER = "GET_USER";
+export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOG_OUT = "LOG_OUT";
