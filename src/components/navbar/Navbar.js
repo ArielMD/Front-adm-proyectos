@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavbarStyled from "./navbarStyled";
+import authContext from "../../context/auth/authContext";
+
 const Navbar = () => {
+  const { user, logout } = useContext(authContext);
   return (
     <NavbarStyled>
       <p>
-        Hola<strong> Ariel</strong>
+        Hola <strong>{user && user.name}</strong>
       </p>
       <nav>
-        <a href="#?">Cerrar Session</a>
+        <button className="log-out" onClick={() => logout()}>
+          Cerrar sessión
+        </button>
       </nav>
     </NavbarStyled>
   );
