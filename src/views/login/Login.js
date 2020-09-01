@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import LoginStyled from "./loginStyled";
 import { useForm } from "react-hook-form";
 import iconUser from "../../assets/usuario.svg";
 import iconPadlock from "../../assets/candado.svg";
 import logoUser from "../../assets/logoUsuario.svg";
+import AuthContext from "../../context/auth/authContext";
 
 const Login = () => {
+  const { login, message } = useContext(AuthContext);
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (values) => {
-    console.log(values);
+    const { email, password } = values;
+    login({ email, password });
   };
 
   const EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -25,8 +28,8 @@ const Login = () => {
                 <img src={iconUser} alt=""></img>
                 <input
                   type="text"
-                  placeholder="Nombre de usuario"
-                  name="username"
+                  placeholder="email"
+                  name="email"
                   ref={register({
                     required: "Campo requerido",
                     pattern: {
@@ -36,7 +39,7 @@ const Login = () => {
                   })}
                 ></input>
               </label>
-              {errors.username && <small>{errors.username.message}</small>}
+              {errors.email && <small>{errors.email.message}</small>}
             </div>
             <div className="input-group">
               <label className="input">

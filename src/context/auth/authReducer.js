@@ -13,6 +13,9 @@ export default (state, action) => {
       localStorage.setItem("token", action.payload.token);
       return { ...state, auth: true, message: null };
 
+    case GET_USER:
+      return { ...state, user: action.payload };
+
     case LOGIN_ERROR:
     case REGISTRY_ERROR:
       localStorage.removeItem("token");
