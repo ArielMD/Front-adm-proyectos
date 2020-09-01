@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
+import clientAxios from "../../config/axios";
 import {
   REGISTRY_SUCCESSFUL,
   REGISTRY_ERROR,
@@ -20,6 +21,26 @@ const AuthState = (props) => {
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  const registerUser = (data) => {
+    clientAxios
+      .post("api/users", data)
+      .then((response) => {
+        console.log(response);
+
+        dispatch({
+          type: REGISTRY_SUCCESSFUL,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+        dispatch({
+          type: REGISTRY_ERROR,
+          payload: error.response.data,
+        });
+      });
+  };
+
   return (
     <authContext.Provider
       value={{
@@ -27,9 +48,10 @@ const AuthState = (props) => {
         auth: state.auth,
         user: state.user,
         message: state.message,
+        registerUser,
       }}
     >
-      {props.Children}
+      {props.children}
     </authContext.Provider>
   );
 };

@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import RegisterStyled from "./registerStyled";
 import { useForm } from "react-hook-form";
 import iconUser from "../../assets/usuario.svg";
 import iconPadlock from "../../assets/candado.svg";
-const Register = () => {
+import AuthContext from "../../context/auth/authContext";
+
+const Register = (props) => {
+  const { registerUser, auth, message } = useContext(AuthContext);
   const { register, handleSubmit, errors, getValues } = useForm();
 
+  useEffect(() => {
+    if (auth) {
+      props.history.push("/proyectos");
+    }
+  }, [auth, message, props.history]);
+
   const onSubmit = (values) => {
-    console.log(values);
+    const { name, email, password } = values;
+    registerUser({ name, email, password });
   };
 
   const EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -23,13 +33,13 @@ const Register = () => {
                 <input
                   type="text"
                   placeholder="Nombre de usuario"
-                  name="username"
+                  name="name"
                   ref={register({
                     required: "Campo requerido",
                   })}
                 ></input>
               </label>
-              {errors.username && <small>{errors.username.message}</small>}
+              {errors.name && <small>{errors.name.message}</small>}
             </div>
             <div className="input-group">
               <label className="input">
