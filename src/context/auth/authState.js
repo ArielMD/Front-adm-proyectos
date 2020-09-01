@@ -49,12 +49,14 @@ const AuthState = (props) => {
     if (token) {
       tokenAuth(token);
     }
-
     clientAxios
       .get("api/auth")
       .then((response) => {
         console.log(response.data);
-        dispatch({ type: GET_USER, payload: response.data.user });
+        dispatch({
+          type: GET_USER,
+          payload: response.data.user,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -87,6 +89,7 @@ const AuthState = (props) => {
         auth: state.auth,
         user: state.user,
         message: state.message,
+        authenticatedUser,
         registerUser,
         login,
       }}

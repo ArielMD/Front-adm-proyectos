@@ -7,6 +7,12 @@ import Register from "./views/register/Register";
 import ProjectState from "./context/projects/projectState";
 import TaskState from "./context/task/taskState";
 import AuthState from "./context/auth/authState";
+import tokenAuth from "./config/token";
+
+const token = localStorage.getItem("token");
+if (token) {
+  tokenAuth(token);
+}
 
 function App() {
   return (
