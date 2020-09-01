@@ -26,7 +26,7 @@ const AuthState = (props) => {
     clientAxios
       .post("api/users", data)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
 
         dispatch({
           type: REGISTRY_SUCCESSFUL,
@@ -65,10 +65,18 @@ const AuthState = (props) => {
     clientAxios
       .post("api/auth/login", data)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        dispatch({
+          type: LOGIN_SUCCESSFUL,
+          payload: response.data,
+        });
       })
       .catch((error) => {
         console.log(error.response);
+        dispatch({
+          type: LOGIN_ERROR,
+          payload: error.response.data,
+        });
       });
   };
 

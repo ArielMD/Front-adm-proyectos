@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import LoginStyled from "./loginStyled";
 import { useForm } from "react-hook-form";
 import iconUser from "../../assets/usuario.svg";
@@ -6,9 +6,15 @@ import iconPadlock from "../../assets/candado.svg";
 import logoUser from "../../assets/logoUsuario.svg";
 import AuthContext from "../../context/auth/authContext";
 
-const Login = () => {
-  const { login, message } = useContext(AuthContext);
+const Login = (props) => {
+  const { login, auth, message } = useContext(AuthContext);
   const { register, handleSubmit, errors } = useForm();
+
+  useEffect(() => {
+    if (auth) {
+      props.history.push("/proyectos");
+    }
+  }, [auth, message, props.history]);
 
   const onSubmit = (values) => {
     const { email, password } = values;
