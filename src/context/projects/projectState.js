@@ -1,7 +1,8 @@
 import React, { useReducer } from "react";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
-import { v4 } from "uuid";
+import clientAXios from "../../config/axios";
+
 import {
   PROJECT_FORM,
   GET_PROJECT,
@@ -11,29 +12,6 @@ import {
 } from "../../types";
 
 const ProjectState = (props) => {
-  const projects = [
-    {
-      id: 1,
-      name: "tarea 1",
-    },
-    {
-      id: 2,
-      name: "tarea 2",
-    },
-    {
-      id: 3,
-      name: "tarea 3",
-    },
-    {
-      id: 4,
-      name: "tarea 1",
-    },
-    {
-      id: 5,
-      name: "tarea 2",
-    },
-  ];
-
   const initialState = {
     projects: [],
     form: false,
@@ -49,19 +27,32 @@ const ProjectState = (props) => {
   };
 
   const getProjects = () => {
-    dispatch({
-      type: GET_PROJECT,
-      payload: projects,
-    });
+    clientAXios
+      .get("api/project")
+      .then((response) => {
+        dispatch({
+          type: GET_PROJECT,
+          payload: response.data.projects,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const addProject = (project) => {
-    project.id = v4();
-
-    dispatch({
-      type: ADD_PROJECT,
-      payload: project,
-    });
+    clientAXios
+      .post("api/project", project)
+      .then((response) => {
+        console.log(response);
+        dispatch({
+          type: ADD_PROJECT,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   const currentProject = (projectId) => {
@@ -72,10 +63,17 @@ const ProjectState = (props) => {
   };
 
   const deleteProject = (projectId) => {
-    dispatch({
-      type: DELETE_PROJECT,
-      payload: projectId,
-    });
+    clientAXios
+      .delete(`api/project/${projectId}`)
+      .then((response) => {
+        dispatch({
+          type: DELETE_PROJECT,
+          payload: projectId,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

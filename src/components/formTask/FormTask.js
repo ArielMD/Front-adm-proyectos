@@ -27,8 +27,7 @@ const FormTask = () => {
 
   const onSubmit = (task, e) => {
     if (!currentTask) {
-      task.projectId = currentProject.id;
-      task.state = false;
+      task.project = currentProject._id;
       addTask(task);
     } else {
       task = { ...currentTask, tarea: task.tarea };
@@ -44,7 +43,7 @@ const FormTask = () => {
       <form className="form-task" onSubmit={handleSubmit(onSubmit)}>
         <div className="input-group">
           <input
-            name="tarea"
+            name="name"
             type="text"
             placeholder="nombre de la tarea"
             ref={register({
@@ -53,7 +52,7 @@ const FormTask = () => {
                 tarea.trim() !== "" || "El campo no puede estar vacio",
             })}
           ></input>
-          {errors.tarea && <small>{errors.tarea.message}</small>}
+          {errors.name && <small>{errors.name.message}</small>}
           <button type="submit">
             {" "}
             {!currentTask ? "Agregar tarea" : "Editar tarea"}{" "}

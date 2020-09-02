@@ -14,7 +14,7 @@ const Project = ({ project }) => {
 
   return (
     <ProjectStyled>
-      <button type="button" onClick={() => selectProject(project.id)}>
+      <button type="button" onClick={() => selectProject(project._id)}>
         {project.name}
       </button>
     </ProjectStyled>

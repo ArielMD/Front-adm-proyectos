@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
+import clientAxios from "../../config/axios";
 import {
   PROJECT_TASKS,
   ADD_TASK,
@@ -13,21 +14,7 @@ import {
 
 const TareaState = (props) => {
   const initialState = {
-    tasks: [
-      { id: 1, tarea: "tarea 1", state: false, projectId: 1 },
-      { id: 2, tarea: "tarea 2", state: true, projectId: 2 },
-      { id: 3, tarea: "tarea 3", state: true, projectId: 3 },
-      { id: 4, tarea: "tarea 1", state: false, projectId: 1 },
-      { id: 5, tarea: "tarea 2", state: true, projectId: 2 },
-      { id: 6, tarea: "tarea 3", state: true, projectId: 3 },
-      { id: 7, tarea: "tarea 1", state: false, projectId: 1 },
-      { id: 8, tarea: "tarea 2", state: true, projectId: 2 },
-      { id: 9, tarea: "tarea 3", state: true, projectId: 3 },
-      { id: 10, tarea: "tarea 1", state: false, projectId: 1 },
-      { id: 11, tarea: "tarea 2", state: true, projectId: 2 },
-      { id: 12, tarea: "tarea 3", state: true, projectId: 3 },
-    ],
-    projectTask: null,
+    projectTask: [],
     currentTask: null,
   };
 
@@ -41,10 +28,16 @@ const TareaState = (props) => {
   };
 
   const addTask = (task) => {
-    dispatch({
-      type: ADD_TASK,
-      payload: task,
-    });
+    console.log(task);
+    clientAxios
+      .post("api/tasks", task)
+      .then((response) => {
+        dispatch({
+          type: ADD_TASK,
+          payload: response.data.newTask,
+        });
+      })
+      .catch((error) => {});
   };
 
   const deleteTask = (taskId) => {

@@ -8,6 +8,7 @@ import ProjectState from "./context/projects/projectState";
 import TaskState from "./context/task/taskState";
 import AuthState from "./context/auth/authState";
 import tokenAuth from "./config/token";
+import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 
 const token = localStorage.getItem("token");
 if (token) {
@@ -23,7 +24,11 @@ function App() {
             <Switch>
               <Route exact path="/" component={Login}></Route>
               <Route exact path="/nuevaCuenta" component={Register}></Route>
-              <Route exact path="/proyectos" component={Home}></Route>
+              <ProtectedRoutes
+                exact
+                path="/proyectos"
+                component={Home}
+              ></ProtectedRoutes>
             </Switch>
           </BrowserRouter>
         </AuthState>

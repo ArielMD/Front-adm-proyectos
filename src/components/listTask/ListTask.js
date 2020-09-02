@@ -31,7 +31,7 @@ const ListTask = () => {
       </ul>
       <button
         className="button"
-        onClick={() => deleteProject(currentProyect.id)}
+        onClick={() => deleteProject(currentProyect._id)}
       >
         Eliminar proyecto
       </button>

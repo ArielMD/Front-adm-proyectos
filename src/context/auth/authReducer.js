@@ -17,6 +17,7 @@ export default (state, action) => {
         auth: true,
         message: null,
         token: action.payload.token,
+        //loading: false,
       };
 
     case GET_USER:
@@ -24,6 +25,7 @@ export default (state, action) => {
         ...state,
         auth: true,
         user: action.payload,
+        //loading: false,
       };
 
     case LOG_OUT:
@@ -36,6 +38,7 @@ export default (state, action) => {
         auth: null,
         user: null,
         message: action.payload,
+        //loading: false,
       };
 
     default:

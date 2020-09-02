@@ -15,7 +15,7 @@ const ListProjects = () => {
       <h1>Mis proyectos</h1>
       <ul>
         {projects.map((project) => (
-          <Project key={project.id} project={project} />
+          <Project key={project._id} project={project} />
         ))}
       </ul>
     </ListProjectsStyled>

@@ -27,7 +27,7 @@ const Task = ({ task }) => {
 
   return (
     <TaskStyled>
-      <p>{task.tarea}</p>
+      <p>{task.name}</p>
       <div className="options">
         {task.state ? (
           <button
