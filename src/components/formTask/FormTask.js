@@ -17,7 +17,7 @@ const FormTask = () => {
 
   useEffect(() => {
     if (currentTask) {
-      setValue("tarea", currentTask.tarea);
+      setValue("name", currentTask.name);
     }
   }, [currentTask, setValue]);
 
@@ -30,7 +30,7 @@ const FormTask = () => {
       task.project = currentProject._id;
       addTask(task);
     } else {
-      task = { ...currentTask, tarea: task.tarea };
+      task = { ...currentTask, name: task.name };
       updateTask(task);
       resetCurrentTask();
     }

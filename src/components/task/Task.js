@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/task/taskContext";
 
 const Task = ({ task }) => {
-  const { deleteTask, getTask, selectTask, updateState } = useContext(
+  const { deleteTask, getTask, selectTask, updateTask } = useContext(
     taskContext
   );
   const { project } = useContext(projectContext);
@@ -12,8 +12,8 @@ const Task = ({ task }) => {
   const [currentProject] = project;
 
   const handleDelete = (taskId) => {
-    deleteTask(taskId);
-    getTask(currentProject.id);
+    deleteTask(taskId, currentProject._id);
+    getTask(currentProject._id);
   };
 
   const handleEdit = (task) => {
@@ -22,7 +22,7 @@ const Task = ({ task }) => {
 
   const changeState = (task) => {
     task.state = !task.state;
-    updateState(task);
+    updateTask(task);
   };
 
   return (
@@ -50,7 +50,7 @@ const Task = ({ task }) => {
         </button>
         <button
           className="button btn-delete"
-          onClick={() => handleDelete(task.id)}
+          onClick={() => handleDelete(task._id)}
         >
           Eliminar
         </button>

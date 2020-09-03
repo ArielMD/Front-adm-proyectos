@@ -7,7 +7,6 @@ import {
   ADD_TASK,
   DELETE_TASK,
   CURRENT_TASK,
-  UPDATE_STATE,
   UPDDATE_TASK,
   RESET_CURRENTTASK,
 } from "../../types";
@@ -20,11 +19,18 @@ const TareaState = (props) => {
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
 
-  const getTask = (projectId) => {
-    dispatch({
-      type: PROJECT_TASKS,
-      payload: projectId,
-    });
+  const getTask = (project) => {
+    clientAxios
+      .get(`api/tasks/${project}`)
+      .then((response) => {
+        dispatch({
+          type: PROJECT_TASKS,
+          payload: response.data.tasks,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   const addTask = (task) => {
@@ -40,11 +46,19 @@ const TareaState = (props) => {
       .catch((error) => {});
   };
 
-  const deleteTask = (taskId) => {
-    dispatch({
-      type: DELETE_TASK,
-      payload: taskId,
-    });
+  const deleteTask = (taskId, projectId) => {
+    console.log(taskId, projectId);
+    clientAxios
+      .delete(`api/tasks/${taskId}/${projectId}`)
+      .then((response) => {
+        dispatch({
+          type: DELETE_TASK,
+          payload: taskId,
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   const selectTask = (task) => {
@@ -55,17 +69,19 @@ const TareaState = (props) => {
   };
 
   const updateTask = (task) => {
-    dispatch({
-      type: UPDDATE_TASK,
-      payload: task,
-    });
-  };
+    console.log(task);
 
-  const updateState = (task) => {
-    dispatch({
-      type: UPDATE_STATE,
-      payload: task,
-    });
+    clientAxios
+      .put(`api/tasks/${task._id}`, task)
+      .then((response) => {
+        dispatch({
+          type: UPDDATE_TASK,
+          payload: task,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const resetCurrentTask = () => {
@@ -84,7 +100,6 @@ const TareaState = (props) => {
         deleteTask,
         selectTask,
         updateTask,
-        updateState,
         resetCurrentTask,
       }}
     >
